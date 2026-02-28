@@ -12,6 +12,7 @@ categories:
     - lanchonete
     - açougue
     - hortifruti
+    - Ifd
 
   Moradia:
     - aluguel
@@ -22,6 +23,7 @@ categories:
     - internet
     - iptu
     - luz
+    - Conta Vivo
 
   Transporte:
     - uber

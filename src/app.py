@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import plotly.graph_objects as go
+import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 from analytics import category_summary, month_details, monthly_summary, prepare_dataframe
@@ -22,6 +23,10 @@ if dataframe.empty:
 
 df = prepare_dataframe(dataframe)
 monthly = monthly_summary(df)
+
+# filtra meses futuros
+current_period = pd.Period.now("M").strftime("%Y-%m")
+monthly = monthly[monthly["month"] <= current_period].copy()
 months = monthly["month"].tolist()
 
 # ── estado persistente do mês selecionado ──────────────────────────────────────
