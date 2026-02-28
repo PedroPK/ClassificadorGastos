@@ -16,6 +16,6 @@ def classify_description(description: str) -> str:
     category_rules, default_category = _cached_categories(mtime)
     text = description.lower().strip()
     for category, keywords in category_rules.items():
-        if any(keyword in text for keyword in keywords):
+        if any(str(keyword).lower() in text for keyword in keywords):
             return category
     return default_category
