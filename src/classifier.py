@@ -1,11 +1,21 @@
 from __future__ import annotations
 
-from config import CATEGORY_RULES, DEFAULT_CATEGORY
+import streamlit as st
+
+from config import CONFIG_PATH, load_categories
+
+
+@st.cache_data
+def _cached_categories(mtime: float) -> tuple[dict[str, list[str]], str]:
+    """Recarrega as categorias do YAML sempre que o arquivo for salvo."""
+    return load_categories()
 
 
 def classify_description(description: str) -> str:
+    mtime = CONFIG_PATH.stat().st_mtime
+    category_rules, default_category = _cached_categories(mtime)
     text = description.lower().strip()
-    for category, keywords in CATEGORY_RULES.items():
+    for category, keywords in category_rules.items():
         if any(keyword in text for keyword in keywords):
             return category
-    return DEFAULT_CATEGORY
+    return default_category
