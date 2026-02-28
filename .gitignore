@@ -1,0 +1,14 @@
+# Dados sensíveis de faturas/cartões
+Input/*
+!Input/.gitkeep
+
+# Ambientes e artefatos Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Arquivos do sistema/editor
+.DS_Store
+.vscode/settings.json
