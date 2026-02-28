@@ -144,4 +144,13 @@ else:
     show_columns = ["date", "description", "category", "amount", "source_file", "source_type"]
     details_table = details[show_columns].copy()
     details_table["date"] = details_table["date"].dt.strftime("%d/%m/%Y")
+
     st.dataframe(details_table, use_container_width=True, hide_index=True)
+
+    total_amount = details["amount"].sum()
+    total_fmt = f"R$ {total_amount:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    st.dataframe(
+        pd.DataFrame([{"": "TOTAL", "amount": total_fmt}]),
+        use_container_width=True,
+        hide_index=True,
+    )
