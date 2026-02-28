@@ -7,7 +7,7 @@ from zipfile import BadZipFile, ZipFile
 
 import pandas as pd
 
-from classifier import classify_description
+from classifier import classify_description, should_ignore
 from parsers.csv_parser import parse_csv
 from parsers.ofx_parser import parse_ofx
 from parsers.pdf_parser import parse_pdf
@@ -149,6 +149,7 @@ def load_transactions(input_dir: str = "Input") -> pd.DataFrame:
     )
     dataframe["date"] = pd.to_datetime(dataframe["date"], errors="coerce")
     dataframe = dataframe.dropna(subset=["date", "description", "amount"])
+    dataframe = dataframe[~dataframe["description"].map(should_ignore)].copy()
     dataframe = _select_best_source_per_month(dataframe)
     dataframe = _drop_cross_file_duplicates(dataframe)
     dataframe["category"] = dataframe["description"].astype(str).map(classify_description)

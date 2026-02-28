@@ -1,5 +1,13 @@
 default_category: Outros
 
+# Lançamentos cujo trecho aparecer na descrição serão completamente ignorados
+# (pagamentos de fatura, estornos, ajustes, etc.)
+ignore:
+  - pagamento recebido
+  - pagamento efetuado
+  - estorno
+  - saldo anterior
+
 categories:
   Alimentação:
     - ifood
