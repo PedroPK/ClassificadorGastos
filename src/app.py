@@ -60,7 +60,8 @@ with col1:
     st.subheader("Evolução mensal dos gastos")
     selection = st.plotly_chart(fig, use_container_width=True, on_select="rerun", key="bar_chart")
 
-    # extrai o mês clicado pelo valor de x (mais confiável que point_index)
+    # extrai o mês clicado — normaliza x_val para YYYY-MM pois o Plotly pode
+    # devolver datas como "2025-12-01" ao interpretar o eixo como date
     clicked_month = None
     try:
         points = []
@@ -70,9 +71,18 @@ with col1:
             points = selection.get("selection", {}).get("points", [])
 
         if points:
-            x_val = points[0].get("x")
-            if x_val in months:
-                clicked_month = x_val
+            point = points[0]
+            x_val = str(point.get("x", ""))
+
+            # normaliza para YYYY-MM (remove sufixos como " 00:00:00" ou "-01")
+            normalized = x_val[:7]
+            if normalized in months:
+                clicked_month = normalized
+            else:
+                # fallback: usa point_index mapeado na lista de meses filtrada
+                idx = point.get("point_index")
+                if isinstance(idx, int) and 0 <= idx < len(months):
+                    clicked_month = months[idx]
     except Exception:
         pass
 
@@ -141,16 +151,17 @@ else:
             bar_cat.update_layout(margin=dict(t=40, b=10))
             st.plotly_chart(bar_cat, use_container_width=True)
 
-    show_columns = ["date", "description", "category", "amount", "source_file", "source_type"]
+    show_columns = ["date", "description", "category", "abs_amount", "source_file", "source_type"]
     details_table = details[show_columns].copy()
+    details_table = details_table.rename(columns={"abs_amount": "valor"})
     details_table["date"] = details_table["date"].dt.strftime("%d/%m/%Y")
 
     st.dataframe(details_table, use_container_width=True, hide_index=True)
 
-    total_amount = details["amount"].sum()
+    total_amount = details["abs_amount"].sum()
     total_fmt = f"R$ {total_amount:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     st.dataframe(
-        pd.DataFrame([{"": "TOTAL", "amount": total_fmt}]),
+        pd.DataFrame([{"": "TOTAL", "valor": total_fmt}]),
         use_container_width=True,
         hide_index=True,
     )
