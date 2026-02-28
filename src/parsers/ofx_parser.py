@@ -4,7 +4,7 @@ from pathlib import Path
 
 from ofxparse import OfxParser
 
-from src.models import Transaction
+from models import Transaction
 
 
 def parse_ofx(file_path: Path) -> list[Transaction]:

@@ -5,7 +5,7 @@ from typing import Optional
 
 import pandas as pd
 
-from src.models import Transaction
+from models import Transaction
 
 
 def _normalize_amount(value: object) -> Optional[float]:

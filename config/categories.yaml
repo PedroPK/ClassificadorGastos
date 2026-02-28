@@ -1,0 +1,90 @@
+default_category: Outros
+
+categories:
+  Alimentação:
+    - ifood
+    - restaurante
+    - padaria
+    - mercado
+    - supermercado
+    - lanch
+    - pizza
+    - lanchonete
+    - açougue
+    - hortifruti
+
+  Moradia:
+    - aluguel
+    - condominio
+    - energia
+    - agua
+    - gás
+    - internet
+    - iptu
+    - luz
+
+  Transporte:
+    - uber
+    - "99"
+    - combustivel
+    - posto
+    - estacionamento
+    - pedagio
+    - metro
+    - onibus
+    - passagem
+    - 99app
+
+  Saúde:
+    - farmacia
+    - drogaria
+    - raiadrogasil
+    - clinica
+    - hospital
+    - plano de saude
+    - laboratorio
+    - dentista
+    - medico
+    - consulta
+
+  Lazer:
+    - cinema
+    - streaming
+    - spotify
+    - netflix
+    - show
+    - bar
+    - viagem
+    - teatro
+    - disney
+    - hbo
+    - amazon prime
+
+  Educação:
+    - curso
+    - faculdade
+    - escola
+    - livraria
+    - udemy
+    - alura
+    - coursera
+
+  Compras:
+    - amazon
+    - mercadolivre
+    - magalu
+    - americanas
+    - shopee
+    - zara
+    - renner
+    - c&a
+    - shein
+
+  Financeiro:
+    - anuidade
+    - juros
+    - iof
+    - tarifa
+    - encargo
+    - pagamento fatura
+    - seguro

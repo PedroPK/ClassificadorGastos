@@ -1,6 +1,8 @@
 # ClassificadorGastos
 
-Aplicação para processar faturas de cartão de crédito em `PDF`, `CSV` e `OFX`, classificar gastos por categoria e analisar a evolução mensal com visão detalhada por mês.
+Aplicação para processar faturas de cartão de crédito em `PDF`, `CSV`, `OFX` e `ZIP` (contendo esses formatos), classificar gastos por categoria e analisar a evolução mensal com visão detalhada por mês.
+
+> Para evitar duplicidade, a ingestão seleciona automaticamente **um formato principal por mês** (com maior qualidade de dados para classificação) e descarta lançamentos duplicados entre arquivos do mesmo mês.
 
 ## Estrutura do projeto
 
@@ -29,12 +31,14 @@ pip install -r requirements.txt
 
 ## Como usar
 
-1. Coloque os arquivos da fatura dentro da pasta `Input` (`.pdf`, `.csv`, `.ofx`).
+1. Coloque os arquivos da fatura dentro da pasta `Input` (`.pdf`, `.csv`, `.ofx` ou `.zip` com esses arquivos).
 2. Execute:
 
 ```bash
-streamlit run src/app.py
+python src/run_app.py
 ```
+
+Para encerrar, use `Ctrl + C` no terminal onde a aplicação estiver rodando.
 
 3. No dashboard:
 	- veja o gráfico de evolução mensal;

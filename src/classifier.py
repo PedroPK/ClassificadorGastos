@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.config import CATEGORY_RULES, DEFAULT_CATEGORY
+from config import CATEGORY_RULES, DEFAULT_CATEGORY
 
 
 def classify_description(description: str) -> str:

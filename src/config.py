@@ -1,12 +1,16 @@
-CATEGORY_RULES = {
-    "Alimentação": ["ifood", "restaurante", "padaria", "mercado", "supermercado", "lanch", "pizza"],
-    "Moradia": ["aluguel", "condominio", "energia", "agua", "gás", "internet", "iptu"],
-    "Transporte": ["uber", "99", "combustivel", "posto", "estacionamento", "pedagio", "metro"],
-    "Saúde": ["farmacia", "drogaria", "clinica", "hospital", "plano de saude", "laboratorio"],
-    "Lazer": ["cinema", "streaming", "spotify", "netflix", "show", "bar", "viagem"],
-    "Educação": ["curso", "faculdade", "escola", "livraria", "udemy", "alura"],
-    "Compras": ["amazon", "mercadolivre", "magalu", "americanas", "shopee"],
-    "Financeiro": ["anuidade", "juros", "iof", "tarifa", "encargo", "pagamento fatura"],
-}
+from __future__ import annotations
 
-DEFAULT_CATEGORY = "Outros"
+from pathlib import Path
+
+import yaml
+
+_CONFIG_PATH = Path(__file__).resolve().parents[1] / "config" / "categories.yaml"
+
+
+def _load() -> tuple[dict[str, list[str]], str]:
+    with _CONFIG_PATH.open(encoding="utf-8") as fh:
+        data = yaml.safe_load(fh)
+    return data.get("categories", {}), data.get("default_category", "Outros")
+
+
+CATEGORY_RULES, DEFAULT_CATEGORY = _load()

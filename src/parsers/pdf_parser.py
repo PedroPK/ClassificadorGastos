@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pdfplumber
 
-from src.models import Transaction
+from models import Transaction
 
 LINE_PATTERN = re.compile(
     r"(?P<date>\d{2}/\d{2}(?:/\d{2,4})?)\s+(?P<desc>.+?)\s+(?P<amount>-?\d[\d\.,]*)$"
