@@ -33,7 +33,7 @@ months = monthly["month"].tolist()
 if "selected_month" not in st.session_state or st.session_state.selected_month not in months:
     st.session_state.selected_month = months[-1] if months else None
 
-# ── gráfico de barras com destaque na barra selecionada ───────────────────────
+?# ── gráfico de barras com destaque na barra selecionada ───────────────────────
 colors = [
     "#1f77b4" if m == st.session_state.selected_month else "#aec7e8"
     for m in months
@@ -138,10 +138,11 @@ else:
         f"Total: R$ {month_total:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     )
 
+    cat_sum = category_summary(details)
+
     det_col1, det_col2 = st.columns([1, 1])
 
     with det_col1:
-        cat_sum = category_summary(details)
         if not cat_sum.empty:
             pie = px.pie(
                 cat_sum,
@@ -149,30 +150,47 @@ else:
                 values="total",
                 title="Distribuição por categoria",
             )
+            pie.update_traces(hovertemplate="<b>%{label}</b><br>R$ %{value:,.2f}<extra></extra>")
             st.plotly_chart(pie, use_container_width=True)
 
     with det_col2:
-        cat_bar = category_summary(details)
-        if not cat_bar.empty:
+        if not cat_sum.empty:
             bar_cat = px.bar(
-                cat_bar.sort_values("total"),
+                cat_sum.sort_values("total"),
                 x="total",
                 y="category",
                 orientation="h",
-                title="Categorias por valor",
+                title="Gastos por categoria",
                 labels={"total": "R$", "category": ""},
             )
+            bar_cat.update_traces(hovertemplate="<b>%{y}</b><br>R$ %{x:,.2f}<extra></extra>")
             bar_cat.update_layout(margin=dict(t=40, b=10))
             st.plotly_chart(bar_cat, use_container_width=True)
+
+    # pills de filtro — key inclui o mês para resetar automaticamente ao trocar de mês
+    selected_category = None
+    if not cat_sum.empty:
+        cats_sorted = cat_sum.sort_values("total", ascending=False)["category"].tolist()
+        selected_category = st.pills(
+            "Filtrar por categoria (clique para selecionar/deselecionar):",
+            options=cats_sorted,
+            default=None,
+            key=f"cat_pills_{st.session_state.selected_month}",
+        )
 
     show_columns = ["date", "description", "category", "abs_amount", "source_file", "source_type"]
     details_table = details[show_columns].copy()
     details_table = details_table.rename(columns={"abs_amount": "valor"})
     details_table["date"] = details_table["date"].dt.strftime("%d/%m/%Y")
 
+    # aplica filtro de categoria se selecionado
+    if selected_category:
+        st.info(f"Filtrando por categoria: **{selected_category}**")
+        details_table = details_table[details_table["category"] == selected_category]
+
     st.dataframe(details_table, use_container_width=True, hide_index=True)
 
-    total_amount = details["abs_amount"].sum()
+    total_amount = details_table["valor"].sum()
     total_fmt = f"R$ {total_amount:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
     st.dataframe(
         pd.DataFrame([{"": "TOTAL", "valor": total_fmt}]),
