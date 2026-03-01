@@ -21,6 +21,12 @@ categories:
     - açougue
     - hortifruti
     - Ifd
+    - Verd Frut
+    - Assai
+    - Brasiliano
+    - Carrefour
+    - Extra
+    - Pão de Açúcar
 
   Moradia:
     - aluguel
@@ -32,6 +38,8 @@ categories:
     - iptu
     - luz
     - Conta Vivo
+    - Armazem Coral
+    - Tinta
 
   Transporte:
     - uber
@@ -39,11 +47,15 @@ categories:
     - combustivel
     - posto
     - estacionamento
+    - estaciona
+    - parking
     - pedagio
     - metro
     - onibus
     - passagem
     - 99app
+    - Shell Box
+    - Mobilidade
 
   Saúde:
     - farmacia
@@ -69,6 +81,9 @@ categories:
     - disney
     - hbo
     - amazon prime
+    - Sao Bras
+    - Yan Ping
+    - Popeyes
 
   Educação:
     - curso

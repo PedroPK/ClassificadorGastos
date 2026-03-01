@@ -38,12 +38,25 @@ colors = [
     "#1f77b4" if m == st.session_state.selected_month else "#aec7e8"
     for m in months
 ]
+
+# valores formatados em R$ para exibir no hover
+hover_labels = [
+    f"R$ {v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    for v in monthly["total"]
+]
+
 fig = go.Figure(
     go.Bar(
         x=monthly["month"],
         y=monthly["total"],
         marker_color=colors,
-        hovertemplate="%{x}<br>R$ %{y:,.2f}<extra></extra>",
+        customdata=hover_labels,
+        hovertemplate="<b>%{x}</b><br>%{customdata}<extra></extra>",
+        hoverlabel=dict(
+            bgcolor="white",
+            bordercolor="#1f77b4",
+            font=dict(size=14, color="#1f77b4"),
+        ),
     )
 )
 fig.update_layout(
@@ -52,6 +65,7 @@ fig.update_layout(
     yaxis_title="Total (R$)",
     plot_bgcolor="rgba(0,0,0,0)",
     margin=dict(t=20, b=10),
+    yaxis=dict(tickformat=",.0f"),
 )
 
 col1, col2 = st.columns([2, 1])
