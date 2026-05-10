@@ -4,6 +4,20 @@ Aplicação para processar faturas de cartão de crédito em `PDF`, `CSV`, `OFX`
 
 > Para evitar duplicidade, a ingestão seleciona automaticamente **um formato principal por mês** (com maior qualidade de dados para classificação) e descarta lançamentos duplicados entre arquivos do mesmo mês.
 
+## Screenshots
+
+### Visão geral do dashboard
+![Visão geral](docs/images/01_dashboard_visao_geral.png)
+
+### Gráfico de evolução mensal e resumo rápido
+![Evolução mensal dos gastos](docs/images/02_grafico_evolucao_mensal.png)
+
+### Distribuição por categoria (pizza + barras)
+![Distribuição por categoria](docs/images/03_distribuicao_por_categoria.png)
+
+### Tabela de lançamentos com filtro por categoria
+![Tabela de lançamentos](docs/images/04_tabela_lancamentos.png)
+
 ## Estrutura do projeto
 
 ```text

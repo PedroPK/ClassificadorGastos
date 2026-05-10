@@ -1,6 +1,21 @@
 # Histórico de Implementações
 
-## Rodada 4 - Encerramento facilitado da aplicação (2026-02-28)
+## Rodada 5 - Documentação com screenshots (2026-05-10)
+
+### Entregas
+- Captura de screenshots das principais funcionalidades do dashboard via Playwright.
+- Criada pasta `docs/images/` com 4 imagens da interface:
+  - `01_dashboard_visao_geral.png` — tela inicial com título e campo de entrada.
+  - `02_grafico_evolucao_mensal.png` — gráfico de barras interativo + resumo rápido (2.509 lançamentos, R$ 216.389,13, 29 meses).
+  - `03_distribuicao_por_categoria.png` — gráfico de pizza e barras horizontais por categoria do mês selecionado.
+  - `04_tabela_lancamentos.png` — filtro por categoria (pills) e tabela detalhada de lançamentos.
+- README atualizado com seção **Screenshots** referenciando todas as imagens.
+
+### Próximas evoluções sugeridas
+- Automatizar re-captura de screenshots a cada release para manter a documentação sempre atualizada.
+- Adicionar GIF animado demonstrando o fluxo de clique no gráfico → seleção de mês → filtro por categoria.
+
+
 
 ### Entregas
 - Criado launcher em `src/run_app.py` para iniciar o Streamlit.

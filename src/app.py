@@ -33,7 +33,7 @@ months = monthly["month"].tolist()
 if "selected_month" not in st.session_state or st.session_state.selected_month not in months:
     st.session_state.selected_month = months[-1] if months else None
 
-?# ── gráfico de barras com destaque na barra selecionada ───────────────────────
+# ── gráfico de barras com destaque na barra selecionada ───────────────────────
 colors = [
     "#1f77b4" if m == st.session_state.selected_month else "#aec7e8"
     for m in months

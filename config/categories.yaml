@@ -27,6 +27,9 @@ categories:
     - Carrefour
     - Extra
     - Pão de Açúcar
+    - Sulamysantossilva
+    - Boi Quente
+    - 
 
   Moradia:
     - aluguel
@@ -40,6 +43,8 @@ categories:
     - Conta Vivo
     - Armazem Coral
     - Tinta
+    - Recife Pistol
+    
 
   Transporte:
     - uber
@@ -56,6 +61,7 @@ categories:
     - 99app
     - Shell Box
     - Mobilidade
+    - NuTag
 
   Saúde:
     - farmacia
@@ -84,6 +90,9 @@ categories:
     - Sao Bras
     - Yan Ping
     - Popeyes
+    - Inbrasa
+    - Emporio
+    - Mariahdemorais
 
   Educação:
     - curso
